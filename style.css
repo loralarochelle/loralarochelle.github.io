@@ -1,0 +1,312 @@
+/* =========================
+   Root / Design Tokens
+========================= */
+
+:root {
+    --sidebar-width: 260px;
+    --page-padding: 40px;
+    --primary-color: #7a0019;
+    --text-color: #222;
+    --muted-text: #666;
+    --background: #f8f9fa;
+}
+
+/* =========================
+   Global Reset / Full Page Fix
+========================= */
+
+html, body {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Roboto, Arial, sans-serif;
+    background-color: var(--background);
+    color: var(--text-color);
+    line-height: 1.7;
+
+    /* IMPORTANT: ensures page uses full width */
+    min-height: 100vh;
+}
+
+/* =========================
+   Sidebar
+========================= */
+
+#header {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: var(--sidebar-width);
+    height: 100vh;
+    background: #ffffff;
+    border-right: 1px solid #ddd;
+    text-align: center;
+    padding: 30px 20px;
+    box-sizing: border-box;
+}
+
+/* Logo */
+
+.logo {
+    width: 70px;
+    height: auto;
+    margin-bottom: 15px;
+}
+
+/* Header text */
+
+#header h1 {
+    margin-bottom: 5px;
+    font-size: 1.8em;
+}
+
+#header p {
+    color: var(--muted-text);
+}
+
+/* =========================
+   Navigation
+========================= */
+
+.main-menu {
+    list-style: none;
+    padding: 0;
+    margin-top: 40px;
+}
+
+.main-menu li {
+    margin: 15px 0;
+}
+
+.main-menu a {
+    text-decoration: none;
+    color: #333;
+    font-weight: 500;
+    transition: color 0.2s ease, transform 0.2s ease;
+}
+
+.main-menu a:hover {
+    color: var(--primary-color);
+    transform: translateX(2px);
+    display: inline-block;
+}
+
+/* Optional active state (if you enable JS highlighting) */
+.main-menu a.active {
+    color: var(--primary-color);
+    font-weight: 700;
+    border-left: 3px solid var(--primary-color);
+    padding-left: 8px;
+}
+
+/* =========================
+   Main Content Layout FIX
+   (THIS FIXES YOUR ISSUE)
+========================= */
+
+#container {
+    margin-left: calc(var(--sidebar-width) + var(--page-padding));
+    padding: 50px;
+
+    /* KEY FIX: makes content actually fill available space */
+    width: calc(100% - var(--sidebar-width) - var(--page-padding));
+
+    box-sizing: border-box;
+}
+
+/* Optional inner constraint for readability */
+.inner {
+    max-width: 850px;
+}
+
+/* =========================
+   Section Switching
+========================= */
+
+.content-region {
+    display: none;
+    opacity: 0;
+    transition: opacity 0.25s ease-in-out;
+}
+
+.content-region.active {
+    display: block;
+    opacity: 1;
+}
+
+/* =========================
+   Typography
+========================= */
+
+h2 {
+    color: var(--primary-color);
+    margin-top: 0;
+}
+
+h3 {
+    margin-top: 30px;
+}
+
+p {
+    margin-bottom: 18px;
+}
+
+/* =========================
+   Home Page
+========================= */
+
+.home-header {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.profile-pic {
+    width: 220px;
+    height: auto;
+    border-radius: 50%;
+    margin-bottom: 20px;
+}
+
+.subtitle {
+    color: var(--muted-text);
+}
+
+/* Social links */
+
+.social-links {
+    margin: 20px 0;
+}
+
+.social-links a {
+    display: inline-block;
+    margin: 0 10px;
+    text-decoration: none;
+    font-weight: bold;
+    color: var(--primary-color);
+}
+
+.social-links a:hover {
+    text-decoration: underline;
+}
+
+/* =========================
+   CV Button
+========================= */
+
+.cv-button {
+    display: inline-block;
+    padding: 12px 22px;
+    background: var(--primary-color);
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+}
+
+.cv-button:hover {
+    opacity: 0.9;
+}
+
+/* =========================
+   Tables
+========================= */
+
+.admissions-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 25px 0;
+}
+
+.admissions-table th {
+    background: var(--primary-color);
+    color: white;
+    text-align: left;
+    padding: 12px;
+}
+
+.admissions-table td {
+    border: 1px solid #ddd;
+    padding: 10px;
+}
+
+.admissions-table tr:nth-child(even) {
+    background: #f3f3f3;
+}
+
+/* =========================
+   Status Colors
+========================= */
+
+.admitted {
+    color: #1e7d32;
+    font-weight: bold;
+}
+
+.rejected {
+    color: #c62828;
+    font-weight: bold;
+}
+
+.waitlist {
+    color: #1565c0;
+    font-weight: bold;
+}
+
+.withdrawn {
+    color: #666;
+    font-weight: bold;
+}
+
+/* =========================
+   Misc
+========================= */
+
+hr {
+    margin: 50px 0;
+    border: none;
+    border-top: 1px solid #ddd;
+}
+
+/* =========================
+   Footer
+========================= */
+
+footer {
+    margin-left: calc(var(--sidebar-width) + var(--page-padding));
+    text-align: center;
+    padding: 30px;
+    color: var(--muted-text);
+}
+
+/* =========================
+   Mobile
+========================= */
+
+@media (max-width: 900px) {
+
+    #header {
+        position: relative;
+        width: 100%;
+        height: auto;
+        border-right: none;
+        border-bottom: 1px solid #ddd;
+    }
+
+    #container {
+        margin-left: 0;
+        width: 100%;
+        padding: 25px;
+    }
+
+    footer {
+        margin-left: 0;
+    }
+
+    .profile-pic {
+        width: 170px;
+    }
+}
